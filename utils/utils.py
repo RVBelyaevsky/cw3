@@ -37,7 +37,7 @@ def last_five_operations():
 
 def result_description(dict_):
     d = datetime.strptime(dict_['date'][:10], "%Y-%m-%d") # преобразуем строку в объект datetime
-    print(f"{d.strftime('%Y.%m.%d')} {dict_['description']}")
+    print(f"{d.strftime('%d.%m.%Y')} {dict_['description']}")
 
 
 def hide_number(number):
