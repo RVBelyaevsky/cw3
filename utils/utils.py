@@ -1,6 +1,6 @@
 import json
 import os
-
+from datetime import datetime
 
 def last_five_operations():
     # открываем файл и читаем содержимое, получаем строку из json
@@ -34,3 +34,13 @@ def last_five_operations():
 
     return valid_list
 
+
+def result_description(dict_):
+    d = datetime.strptime(dict_['date'][:10], "%Y-%m-%d") # преобразуем строку в объект datetime
+    print(f"{d.strftime('%Y.%m.%d')} {dict_['description']}")
+    # if dict_.get('from', False) != False:
+    #     print(f"{dict_['from']} -> {dict_['to']}")
+    # else:
+    #     print(dict_['to'])
+    # print(f"{dict_['operationAmount']['amount']} {dict_['operationAmount']['currency']['name']}")
+    # print()
