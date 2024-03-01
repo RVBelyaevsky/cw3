@@ -1,7 +1,10 @@
-from utils.utils import last_five_operations, result_description
+from utils.utils import last_five_operations, result_description, result_trasaction
 
 valid_transactions = last_five_operations()
 
 for i in range(5):
     result_description(valid_transactions[i])
+    result_trasaction(valid_transactions[i])
+    print()
+
 

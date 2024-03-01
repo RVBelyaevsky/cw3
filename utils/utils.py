@@ -38,9 +38,24 @@ def last_five_operations():
 def result_description(dict_):
     d = datetime.strptime(dict_['date'][:10], "%Y-%m-%d") # преобразуем строку в объект datetime
     print(f"{d.strftime('%Y.%m.%d')} {dict_['description']}")
-    # if dict_.get('from', False) != False:
-    #     print(f"{dict_['from']} -> {dict_['to']}")
-    # else:
-    #     print(dict_['to'])
+
+
+def hide_number(number):
+    if len(number) == 16:
+        return f"{number[:4]} {number[5:7]}** **** {number[-4:]}"
+    else:
+        return f"**{number[-4:]}"
+
+
+def result_trasaction(dict_):
+    bell_to = dict_['to'].split()
+    if dict_.get('from', False) != False:
+        bell_from = dict_['from'].split()
+        print(f"{' '.join(bell_from[:-1])} {hide_number(bell_from[-1])} -> {' '.join(bell_to[:-1])} {hide_number(bell_to[-1])}")
+    else:
+        print(f"{' '.join(bell_to[:-1])} {hide_number(bell_to[-1])}")
     # print(f"{dict_['operationAmount']['amount']} {dict_['operationAmount']['currency']['name']}")
     # print()
+
+
+
