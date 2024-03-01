@@ -54,8 +54,11 @@ def result_trasaction(dict_):
         print(f"{' '.join(bell_from[:-1])} {hide_number(bell_from[-1])} -> {' '.join(bell_to[:-1])} {hide_number(bell_to[-1])}")
     else:
         print(f"{' '.join(bell_to[:-1])} {hide_number(bell_to[-1])}")
-    # print(f"{dict_['operationAmount']['amount']} {dict_['operationAmount']['currency']['name']}")
-    # print()
+
+
+def result_summ(dict_):
+    print(f"{dict_['operationAmount']['amount']} {dict_['operationAmount']['currency']['name']}")
+
 
 
 
