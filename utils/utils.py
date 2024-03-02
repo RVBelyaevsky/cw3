@@ -42,7 +42,7 @@ def result_description(dict_):
 
 def hide_number(number):
     if len(number) == 16:
-        return f"{number[:4]} {number[5:7]}** **** {number[-4:]}"
+        return f"{number[:4]} {number[4:6]}** **** {number[-4:]}"
     else:
         return f"**{number[-4:]}"
 
