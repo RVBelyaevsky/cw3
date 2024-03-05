@@ -1,10 +1,13 @@
 import json
-import os
 from datetime import datetime
+from config import operations_path
+
 
 def last_five_operations():
+    '''Функция возвращяет список пяти последних успешных операций'''
+
     # открываем файл и читаем содержимое, получаем строку из json
-    with open(os.path.join("operations.json"), encoding='utf-8') as f:
+    with open(operations_path, encoding='utf-8') as f:
         data = f.read()
 
     # получаем список словарей операций для обработки
@@ -36,29 +39,30 @@ def last_five_operations():
 
 
 def result_description(dict_):
+    '''Фунция возвращает строку с датой и описанием в формате согласно ТЗ'''
     d = datetime.strptime(dict_['date'][:10], "%Y-%m-%d") # преобразуем строку в объект datetime
-    print(f"{d.strftime('%d.%m.%Y')} {dict_['description']}")
+    return f"{d.strftime('%d.%m.%Y')} {dict_['description']}"
 
 
 def hide_number(number):
+    '''функция маскирует номер счета или карты'''
     if len(number) == 16:
         return f"{number[:4]} {number[4:6]}** **** {number[-4:]}"
     else:
         return f"**{number[-4:]}"
 
 
-def result_trasaction(dict_):
+def result_transaction(dict_):
+    '''Фукция возвращает путь транзакции'''
     bell_to = dict_['to'].split()
     if dict_.get('from', False) != False:
         bell_from = dict_['from'].split()
-        print(f"{' '.join(bell_from[:-1])} {hide_number(bell_from[-1])} -> {' '.join(bell_to[:-1])} {hide_number(bell_to[-1])}")
+        return f"{' '.join(bell_from[:-1])} {hide_number(bell_from[-1])} -> {' '.join(bell_to[:-1])} {hide_number(bell_to[-1])}"
     else:
-        print(f"{' '.join(bell_to[:-1])} {hide_number(bell_to[-1])}")
+        return f"{' '.join(bell_to[:-1])} {hide_number(bell_to[-1])}"
 
 
 def result_summ(dict_):
-    print(f"{dict_['operationAmount']['amount']} {dict_['operationAmount']['currency']['name']}")
-
-
-
+    '''Фунция возвращает строку с суммой транзакции'''
+    return f"{dict_['operationAmount']['amount']} {dict_['operationAmount']['currency']['name']}"
 
